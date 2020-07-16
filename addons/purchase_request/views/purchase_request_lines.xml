@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="view_purchase_request_line_form" model="ir.ui.view">
+        <field name="name">purchase.request.line.form</field>
+        <field name="model">purchase.request.line</field>
+        <field name="arch" type="xml">
+            <form string = "Purchase Request Line">
+                <sheet>
+                    <div class = "oe_title">
+                        <h1>
+                            <field name="name_seq" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name_id" />
+                        </group>
+                        <group>
+                            <field name="description" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="requested_by" />
+                        <field name="date_start" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="activity_ids" widget="mail_activity" />
+                    <field name="message_ids" widget="mail_thread" option="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_purchase_request_line_tree" model="ir.ui.view">
+        <field name="name">purchase.request.line.tree</field>
+        <field name="model">purchase.request.line</field>
+        <field name="arch" type="xml">
+            <tree string = "Purchase Request Line">
+                <field name="name_seq"/>
+                <field name="name_id"/>
+                <field name="requested_by"/>
+                <field name="date_start"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="purchase_request_line_form_action">
+        <field name="name">Purchase Requests Line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.request.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Click to start a new purchase request line process.
+          </p>
+        </field>
+    </record>
+
+
+
+    <menuitem id="menu_purchase_request_line" name="Purchase Requests Line" parent="parent_menu_purchase_request" action="purchase_request_line_form_action" sequence="1"/>
+
+</odoo>
